@@ -24,29 +24,6 @@ const UserList = () => {
   React.useEffect(() => {
     dispatch(getAllUsers());
   }, []);
-  const cardData = [
-    {
-      title: "Card 1",
-      content: "Content for card 1",
-    },
-    {
-      title: "Card 2",
-      content: "Content for card 2",
-    },
-    {
-      title: "Card 3",
-      content: "Content for card 3",
-    },
-    {
-      title: "Card 4",
-      content: "Content for card 4",
-    },
-    {
-      title: "Card 4",
-      content: "Content for card 4",
-    },
-    // Add more card objects as needed
-  ];
 
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
