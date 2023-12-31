@@ -1,19 +1,8 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.from_grp{
+  display: flex !important;
+  flex-direction: row !important;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card{
+  width: 10%;
+  margin: 0px 41px 20px 52px;
 }
