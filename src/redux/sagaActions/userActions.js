@@ -1,6 +1,10 @@
 import { put, takeLatest, call } from "redux-saga/effects";
 
 import {
+  DELETE_USER,
+  DELETE_USER_SUCCESS,
+  EDIT_USER,
+  EDIT_USER_SUCCESS,
   ERROR,
   GET_ALL_USER,
   GET_ALL_USER_SUCCESS,
@@ -62,8 +66,47 @@ function* getAllUser(action) {
   }
 }
 
+function* editUser(action) {
+  const { id, data } = action.payload;
+
+  try {
+    const response = yield call(authInstance.put, `users/${id}`, data);
+
+    yield put({
+      type: EDIT_USER_SUCCESS,
+      payload: response?.data,
+    });
+  } catch (error) {
+    const err = error.response.data.message;
+    yield put({
+      type: ERROR,
+      payload: err,
+    });
+  }
+}
+
+function* deleteUser(action) {
+
+  try {
+    const response = yield call(authInstance.delete, `users/${action.payload}`);
+
+    yield put({
+      type: DELETE_USER_SUCCESS,
+      payload: response?.data,
+    });
+  } catch (error) {
+    const err = error.response.data.message;
+    yield put({
+      type: ERROR,
+      payload: err,
+    });
+  }
+}
+
 export default function* userActionWatcher() {
   yield takeLatest(LOGIN_USER, loginUser);
   yield takeLatest(REGISTER_USER, addUser);
   yield takeLatest(GET_ALL_USER, getAllUser);
+  yield takeLatest(EDIT_USER, editUser);
+  yield takeLatest(DELETE_USER, deleteUser);
 }

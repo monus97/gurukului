@@ -1,4 +1,6 @@
 import {
+    DELETE_USER_SUCCESS,
+    EDIT_USER_SUCCESS,
   ERROR,
   GET_ALL_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
@@ -10,6 +12,8 @@ const initialState = {
   registerData: null,
   loginData: null,
   allUsers: null,
+  editedData:null,
+  deleteData:null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -31,6 +35,18 @@ const userReducer = (state = initialState, action) => {
         ...state,
         error: false,
         allUsers: action.payload,
+      };
+    case EDIT_USER_SUCCESS:
+      return {
+        ...state,
+        error: false,
+        editedData: action.payload,
+      };
+    case DELETE_USER_SUCCESS:
+      return {
+        ...state,
+        error: false,
+    deleteData: action.payload,
       };
 
     case ERROR:
